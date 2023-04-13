@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turkisht</title>
     <link rel="stylesheet" href="/dist/search.css" />
-
-    <title>Second Page</title>
+    <script defer src="js/script.js"></script>
   </head>
   <body>
-    <h1>Дома</h1>
+
     <header>
       <div class="header__container">
         <a href="" class="header__logo">
@@ -17,7 +18,7 @@
         <div class="header__navigation">
           <nav class="header__menu menu">
             <ul class="menu__body">
-              <li class="menu__item"><a href="" class="menu__link">home</a></li>
+              <li class="menu__item"><a href="/" class="menu__link">home</a></li>
               <li class="menu__item">
                 <a href="" class="menu__link">About us</a>
               </li>
@@ -43,13 +44,14 @@
         </div>
       </div>
     </header>
-    <p class="par">Найдено 140 результатов по вашему запросу</p>
+    <% let i = 0; i = apartmentsforrent.length%>
+    <p class="par">Найдено <%= i %> результатов по вашему запросу</p>      
     <div class="buy_arend">
-      <button class="buy">
-        <a href="" class="buy_a">Купить</a>
-      </button>
       <button class="arend">
-        <a href="" class="arend_a">Снять</a>
+        <a href="/second" class="arend_a">Купить</a>
+      </button>
+      <button class="buy" >
+        <a href="/second2" class="buy_a">Снять</a>
       </button>
       <div class="filtr_search">
         <div class="type_of_object">
@@ -170,7 +172,7 @@
         </div>
         <div class="year_of_build">
           <img src="img/Vector31.png" alt="" />
-          <a href="" class="main_a">План объекта</a>
+          <a href="" class="main_a">План объектра</a>
           <div class="filter_link">
             <div class="filter_a"><span>Да</span></div>
             <div class="filter_a"><span>Нет</span></div>
@@ -185,122 +187,104 @@
     </div>
     <div class="cintainer">
       <div class="kvadrati">
-        <div class="container">
-          <div class="row">
-            <% for (let i = 0; i < apartments.length; i++) { %>
-            <div class="col-sm-4 mb-3">
-              <div class="card">
-                <div class="blocks1">
-                  <img
-                    class="kartinki"
-                    src="<%=apartments[i].image_url %>"
-                    alt=""
-                  />
-                  <p class="block_text"><%= apartments[i].name %> районе</p>
-                  <p class="main_text">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et
-                    massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                    sapien.
-                  </p>
-                  <div class="bottom_text1">
-                    <p
-                      style="
-                        font-family: 'Montserrat';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 13px;
-                        line-height: 16px;
-                        /* identical to box height */
+        <% for (let i = 0; i < apartmentsforrent.length; i++) { %>
+        <div class="blocks1">
+          <img class="fotochka"
+            src="<%= apartmentsforrent[i].image_url %>"
+            alt=""
+            style="width: 353px; height: 173px"
+          />
+          <div class="prices">
+            <p><%= apartmentsforrent[i].price.toLocaleString() %> ₽</p>
+          </div>
+          <p class="block_text">
+            <%= apartmentsforrent[i].name %> районе
+          </p>
+          <p class="main_text">
+            <%= apartmentsforrent[i].description %>
+          </p>
+          <div class="bottom_text1">
+            <p
+              style="
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 16px;
+                /* identical to box height */
 
-                        color: #828282;
-                      "
-                    >
-                      Комнат
-                    </p>
-                    <p
-                      style="
-                        font-family: 'Montserrat';
-                        font-size: 13px;
-                        color: #383737;
-                        font-weight: 500;
-                        line-height: 16px;
-                      "
-                    >
-                      <%= apartments[i].bedrooms %> + <%=
-                      apartments[i].bathrooms %>
-                    </p>
-                  </div>
-                  <div class="bottom_text1">
-                    <p
-                      style="
-                        font-family: 'Montserrat';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 13px;
-                        line-height: 16px;
-                        /* identical to box height */
+                color: #828282;
+              "
+            >
+              Комнат
+            </p>
+            <p
+              style="
+                font-family: 'Montserrat';
+                font-size: 13px;
+                color: #383737;
+                font-weight: 500;
+                line-height: 16px;
+              "
+            >
+              <%= apartmentsforrent[i].bedrooms %>
+            </p>
+          </div>
+          <div class="bottom_text1">
+            <p
+              style="
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 16px;
+                /* identical to box height */
 
-                        color: #828282;
-                      "
-                    >
-                      Цена
-                    </p>
-                    <p
-                      class="card-text"
-                      style="
-                        font-family: 'Montserrat';
-                        font-size: 13px;
-                        color: #383737;
-                        font-weight: 500;
-                        line-height: 16px;
-                      "
-                    >
-                      <%= apartments[i].price %>
-                    </p>
-                  </div>
-                  <div class="bottom_text1">
-                    <p
-                      style="
-                        font-family: 'Montserrat';
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 13px;
-                        line-height: 16px;
-                        /* identical to box height */
+                color: #828282;
+              "
+            >
+              Построен
+            </p>
+            <p
+              style="
+                font-family: 'Montserrat';
+                font-size: 13px;
+                color: #383737;
+                font-weight: 500;
+                line-height: 16px;
+              "
+            >
+              <%= apartmentsforrent[i].year %>
+            </p>
+          </div>
+          <div class="bottom_text1">
+            <p
+              style="
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 16px;
+                /* identical to box height */
 
-                        color: #828282;
-                      "
-                    >
-                      Площадь
-                    </p>
-                    <p
-                      style="
-                        font-family: 'Montserrat';
-                        font-size: 13px;
-                        color: #383737;
-                        font-weight: 500;
-                        line-height: 16px;
-                      "
-                    >
-                      <%= apartments[i].size %> кв.м.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- <img
-              src="<%= apartments[i].image_url %>"
-              class="card-img-top"
-              alt="<%= apartments[i].name %>"
-            />
-            <div class="card-body">
-              <h5 class="card-title"><%= apartments[i].name %></h5>
-              <p class="card-text">Price: <%= apartments[i].price %></p>
-            </div> -->
+                color: #828282;
+              "
+            >
+              Площадь
+            </p>
+            <p
+              style="
+                font-family: 'Montserrat';
+                font-size: 13px;
+                color: #383737;
+                font-weight: 500;
+                line-height: 16px;
+              "
+            >
+              <%= apartmentsforrent[i].size %> кв.м.
+            </p>
           </div>
         </div>
         <% } %>
-      </div>
-    </div>
   </body>
 </html>

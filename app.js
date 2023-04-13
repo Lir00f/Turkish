@@ -38,7 +38,7 @@ db.query(
   description VARCHAR(255) NOT NULL,
   year int NOT NULL,
   price INT NOT NULL,
-  bedrooms VARCHAR(255) NOT NULL,
+  bedrooms varchar(255) NOT NULL,
   bathrooms INT NOT NULL,
   size INT NOT NULL,
   location VARCHAR(255) NOT NULL,
@@ -53,6 +53,31 @@ db.query(
     }
   }
 );
+
+
+db.query(`
+  CREATE TABLE IF NOT EXISTS apartmentsforrent (
+    id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    price INT NOT NULL,
+    bedrooms VARCHAR(255) NOT NULL,
+    bathrooms INT NOT NULL,
+    size INT NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+  )`,
+  (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Apartments for rent table created");
+    }
+  }
+);
+
 
 // Обработка вебхука от amoCRM
 app.post("/webhook", (req, res) => {
@@ -96,6 +121,21 @@ app.get("/second", (req, res) => {
       res.render("second", { apartments: results });
     }
   });
+});
+
+app.get("/second2", (req, res) => {
+  db.query("SELECT * FROM apartmentsforrent", (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error retrieving apartments");
+    } else {
+      res.render("second2", { apartmentsforrent: results });
+    }
+  });
+});
+
+app.get('/second2', (req, res) => {
+  res.render('second2'); // Здесь "second2" - это имя вашего шаблона EJS
 });
 
 app.get("/", function (req, res) {
